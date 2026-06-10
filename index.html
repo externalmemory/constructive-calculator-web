@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Constructive Calculator</title>
+<meta name="description" content="An iPhone calculator that computes with exact, arbitrary-precision real numbers. cos(π/3) is exactly ½, and you can scroll any result for as many correct digits as you want.">
+<link rel="icon" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <img class="icon" src="icon.png" alt="Constructive Calculator app icon">
+  <h1>Constructive Calculator</h1>
+  <p class="tagline">Exact answers, any precision.</p>
+  <span class="btn disabled">Coming soon to the App&nbsp;Store</span>
+</header>
+
+<main class="container">
+  <section>
+    <p class="lead">Ordinary calculators round. Constructive Calculator doesn&rsquo;t.</p>
+    <p>It computes with <b>constructive real numbers</b>, an arbitrary-precision engine
+    that keeps every result exact and gives you as many correct digits as you ask for.
+    The rounding errors that quietly accumulate in ordinary calculators simply never
+    happen.</p>
+  </section>
+
+  <section>
+    <div class="shots">
+      <img src="shot-ramanujan.png" alt="exp(pi times sqrt 163) scrolled to its decimal point, showing twelve nines">
+      <img src="shot-exact.png" alt="cos(pi/3) shown as exactly 0.5">
+    </div>
+    <p class="muted" style="text-align:center; margin-top:14px;">
+      Left: <code>exp(&pi;&radic;163)</code> looks like a whole number, but scroll past the
+      decimal point and twelve 9s appear before it diverges. Right: <code>cos(&pi;/3)</code>
+      is exactly &frac12;.
+    </p>
+  </section>
+
+  <section>
+    <h2>What it does</h2>
+    <ul class="features">
+      <li><b>Exact, not approximate.</b> cos(&pi;/3) is exactly 0.5, &radic;2 &times; &radic;2
+        is exactly 2, ln(e) is exactly 1.</li>
+      <li><b>Scroll for more digits.</b> Every result is computed on demand; swipe &radic;2
+        or &pi; for tens, hundreds, or thousands of correct digits.</li>
+      <li><b>A scientific keypad.</b> Trigonometry in degrees or radians and their inverses,
+        exponentials and logarithms, powers and roots, factorials, percentages, &pi; and e.</li>
+      <li><b>Exact big integers.</b> 52! (the number of ways to shuffle a deck) prints in
+        full, all 68 digits.</li>
+      <li><b>Built for clarity.</b> A running tape of recent calculations, locale-aware
+        digit grouping, and copy at any precision.</li>
+    </ul>
+  </section>
+
+  <section class="callout">
+    <p style="margin:0;">Constructive Calculator is an independent port of Hans Boehm&rsquo;s
+    constructive-reals calculator, the arbitrary-precision engine behind Android&rsquo;s
+    Calculator, rebuilt natively for iPhone.</p>
+  </section>
+</main>
+
+<footer class="container">
+  <p><a href="support.html">Support</a> &middot; <a href="privacy.html">Privacy Policy</a></p>
+  <p>&copy; 2026 dimview.org. Not affiliated with or endorsed by Google, Hewlett-Packard,
+  or Silicon Graphics.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+:root {
+  --blue: #0a53e0;
+  --ink: #1b1b1f;
+  --muted: #5c5c66;
+  --bg: #ffffff;
+  --card: #f5f6f8;
+  --line: #ececf0;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.62;
+}
+a { color: var(--blue); }
+.container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+.hero {
+  text-align: center;
+  padding: 64px 20px 44px;
+  background: linear-gradient(180deg, #eef3ff, #ffffff);
+}
+.hero .icon { width: 120px; height: 120px; border-radius: 27px;
+  box-shadow: 0 6px 22px rgba(10, 83, 224, 0.18); }
+.hero h1 { font-size: 2.25rem; margin: 18px 0 6px; letter-spacing: -0.5px; }
+.hero .tagline { font-size: 1.15rem; color: var(--muted); margin: 0 0 24px; }
+.btn {
+  display: inline-block; background: var(--blue); color: #fff; text-decoration: none;
+  padding: 12px 22px; border-radius: 12px; font-weight: 600; font-size: 1rem;
+}
+.btn.disabled { background: #c9ccd3; cursor: default; }
+
+section { padding: 34px 0; }
+h2 { font-size: 1.5rem; }
+.lead { font-size: 1.2rem; font-weight: 600; }
+.muted { color: var(--muted); }
+
+.shots { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+.shots img { width: 230px; max-width: 44%; border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.13); }
+
+ul.features { list-style: none; padding: 0; margin: 0; }
+ul.features li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+
+.callout { background: var(--card); border-radius: 14px; padding: 20px 22px; }
+
+footer { border-top: 1px solid var(--line); padding: 28px 0 48px;
+  color: var(--muted); font-size: 0.92rem; text-align: center; }
+footer a { margin: 0 6px; }
+
+.page { padding: 44px 0 8px; }
+.page h1 { font-size: 1.85rem; }
+.back { display: inline-block; margin-bottom: 8px; font-size: 0.95rem; }
+code { background: #eef0f4; padding: 1px 5px; border-radius: 5px; font-size: 0.92em; }
