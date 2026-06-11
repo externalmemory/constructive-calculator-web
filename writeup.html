@@ -25,21 +25,21 @@
     <code>exp(100) &asymp; 2.7&times;10<sup>43</sup></code>, and adding 42 changes nothing (42
     falls off the bottom of the representation), so the subtraction gives <b>0</b>. The constructive 
     engine evaluates <code>exp(100)</code> to as many digits as is needed, twice, and the subtraction
-    leaves only 42. The calculator does not simplify the expression first, it does indeed 
-    perform both operations as instructed &mdash; addition and then subtraction.</li>
+    leaves only 42. The calculator does not simplify the expression first; it does indeed 
+    perform both operations as instructed: addition and then subtraction.</li>
   </ul>
 
-  <p>It's made possible by <i>constructive</i> (or <i>computable</i>) real arithmetic: instead of 
+  <p>It&rsquo;s made possible by <i>constructive</i> (or <i>computable</i>) real arithmetic: instead of 
   storing a number as a fixed-width approximation, store a function that produces an approximation
   to any requested precision, and evaluate each subexpression to whatever precision the final
   answer needs. Hans Boehm built a Java library for this in the 1980s and 90s, and it has been
   the engine behind Android&rsquo;s built-in Calculator, a fact that periodically
   delights <a href="https://news.ycombinator.com/item?id=43066953">Hacker</a>
-  <a href="https://news.ycombinator.com/item?id=21330341">News</a>.
+  <a href="https://news.ycombinator.com/item?id=21330341">News</a>.</p>
   <p>But there was no equivalent on iPhone that I could find, so I built one, by porting
   Boehm&rsquo;s engine.</p>
 
-  <p>It's 2026, so I didn&rsquo;t hand-write the port. I directed Opus 4.8 to translate the source
+  <p>It&rsquo;s 2026, so I didn&rsquo;t hand-write the port. I directed Opus 4.8 to translate the source
   line by line into Swift, and steered the process (architecture, UI, on-device testing, the
   App Store machinery) over a long back-and-forth.</p>
   <p>What got ported:</p>
@@ -91,7 +91,7 @@
   it terminates; it prints <code>42.000&hellip;</code> with a &ldquo;more digits&rdquo; arrow
   and will emit zeros forever. It always gives you the right number to as many digits as you
   want; it only <i>labels</i> a result &ldquo;exact&rdquo; when the value stays inside the
-  structured rational-times-known-constant form. <code>cos(&pi;/3)=&frac12;</code> does, 
+  structured rational-times-known-constant form. <code>cos(&pi;/3)=&frac12;</code> does; 
   <code>exp(100)+42</code> doesn&rsquo;t. Android&rsquo;s calculator has the same property, for
   the same reason.</p>
 
