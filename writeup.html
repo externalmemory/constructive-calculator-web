@@ -11,7 +11,7 @@
 <body>
 <main class="container page">
   <a class="back" href="index.html">&larr; Constructive Calculator</a>
-  <h1>A calculator that doesn&rsquo;t round</h1>
+  <h1>Calculator that doesn&rsquo;t Round</h1>
 
   <p>Most calculators lie a little. Square <code>&radic;2</code> and many will hand back
   <code>2.0000000000000004</code>, or a <code>2</code> that&rsquo;s really that, rounded for
@@ -19,40 +19,32 @@
 
   <p><b>Constructive Calculator</b> is an iPhone calculator that doesn&rsquo;t round at all.
   It computes with <i>constructive real numbers</i>: every result is exact, and you can scroll
-  any answer for as many correct digits as you want. What that buys you:</p>
+  any answer for as many correct digits as you want. What that gives you:</p>
 
   <ul>
-    <li><code>exp(&pi;&radic;163)</code>, Ramanujan&rsquo;s constant, looks exactly like the
-    integer <code>262537412640768744</code>. Scroll past the decimal point and you find
-    <b>twelve 9s</b> before it finally diverges. A floating-point calculator shows you the
-    integer and never admits it isn&rsquo;t one.</li>
-    <li><code>exp(100) + 42 &minus; exp(100)</code> returns <b>exactly 42</b>. In IEEE double,
+    <li><code>exp(&pi;&radic;163)</code>, Ramanujan&rsquo;s constant, looks like the
+    integer <code>262,537,412,640,768,744</code>. Scroll past the decimal point and you find
+    <b>twelve 9s</b> before it finally diverges.</li>
+    <li><code>exp(100) + 42 &minus; exp(100)</code> returns <b>exactly 42</b>. In IEEE 754 double,
     <code>exp(100) &asymp; 2.7&times;10<sup>43</sup></code>, and adding 42 changes nothing (42
-    falls off the bottom of the representation), so the subtraction gives <b>0</b>. Even a
-    34-digit decimal calculator returns 0. The constructive engine quietly evaluates
-    <code>exp(100)</code> to about 90 digits so the cancellation lands on 42.</li>
-    <li><code>1/243 = 0.004 11 5 22 6 33 7 44 8 55 9&hellip;</code>, two sequences interleaved.
-    Feynman slipped this into a letter from Los Alamos; the censor flagged the digits as a
-    suspected code, and he had to write back that there&rsquo;s &ldquo;no more information in
-    the number .004115226337&hellip; than there is in the number 243.&rdquo;</li>
+    falls off the bottom of the representation), so the subtraction gives <b>0</b>. The constructive 
+    engine evaluates <code>exp(100)</code> to as many digits as is needed, twice, and the subtraction
+    leaves only 42. The calculator does not simplify the expression first, it does indeed 
+    perform both operations as instructed &mdash; addition and then subtraction.</li>
   </ul>
 
-  <h2>Where this comes from</h2>
-  <p>This is <i>constructive</i> (or <i>computable</i>) real arithmetic: instead of storing a
-  number as a fixed-width approximation, you store a function that produces an approximation to
-  any requested precision, and you evaluate each subexpression to whatever precision the final
+  <p>It's made possible by <i>constructive</i> (or <i>computable</i>) real arithmetic: instead of 
+  storing a number as a fixed-width approximation, store a function that produces an approximation
+  to any requested precision, and evaluate each subexpression to whatever precision the final
   answer needs. Hans Boehm built a Java library for this in the 1980s and 90s, and it has been
-  the engine behind Android&rsquo;s built-in Calculator for a decade, a fact that periodically
-  delights Hacker News (<a href="https://news.ycombinator.com/item?id=21331576">2019</a>,
-  <a href="https://news.ycombinator.com/item?id=43066953">last year&rsquo;s &ldquo;a calculator
-  app? anyone could make that&rdquo;</a>).</p>
-  <p>There was no equivalent on iPhone that I could find. So I built one, by porting
-  Boehm&rsquo;s actual engine.</p>
+  the engine behind Android&rsquo;s built-in Calculator, a fact that periodically
+  delights <a href="https://news.ycombinator.com/item?id=43066953">Hacker</a>
+  <a href="https://news.ycombinator.com/item?id=21330341">News</a>.
+  <p>But there was no equivalent on iPhone that I could find, so I built one, by porting
+  Boehm&rsquo;s engine.</p>
 
-  <h2>The build: a line-by-line port, done by Claude</h2>
-  <p>I&rsquo;ll be upfront about how this was made, because it&rsquo;s half the point: I
-  didn&rsquo;t hand-write the port. I directed Anthropic&rsquo;s Claude to translate the source
-  line by line into Swift, and I drove the project (architecture, UI, on-device testing, the
+  <p>It's 2026, so I didn&rsquo;t hand-write the port. I directed Opus 4.8 to translate the source
+  line by line into Swift, and steered the process (architecture, UI, on-device testing, the
   App Store machinery) over a long back-and-forth.</p>
   <p>What got ported:</p>
   <ul>
@@ -73,10 +65,8 @@
   Mac I develop on can&rsquo;t run a current Xcode, so signing and TestFlight uploads run on
   GitHub Actions; the local machine never touches the submission.)</p>
 
-  <h2>A second model reviewed it, and found real bugs</h2>
-  <p>Here&rsquo;s the part worth the writeup. Before widening, I had a <i>different</i> model,
-  Fable 5, do a clean-room review: fresh context, no memory of how the code was built, just the
-  repository. It earned its keep:</p>
+  <p>Then I had a <i>different</i> model, Fable 5, do a clean-room review: fresh context, no 
+  memory of how the code was built, just the repository. It earned its keep:</p>
   <ul>
     <li>A <b>concurrency bug</b>: <code>@MainActor</code> was attached to the wrong type, so the
     view model wasn&rsquo;t main-actor isolated and a background task was mutating
@@ -92,13 +82,13 @@
     <li>And the boring-but-mandatory App Store gaps: a missing privacy manifest, the
     export-compliance flag, accessibility labels.</li>
   </ul>
-  <p>As a data point on AI-assisted development, I found this genuinely useful: the <i>port
-  itself</i> was faithful (the review checked the algorithms against Boehm&rsquo;s Java and
+  <p>As a data point on AI-assisted development, I found this quite useful: the <i>port
+  itself</i> was faithful (Fable 5 checked the algorithms against Boehm&rsquo;s Java and
   found no transcription errors), but the <i>adaptation</i> to a different concurrency model is
   where the bugs lived, and a second model with no stake in the first one&rsquo;s choices caught
   them. None would have shown up in the unit tests.</p>
 
-  <h2>What it can&rsquo;t do (the honest part)</h2>
+  <h2>Known Limitations</h2>
   <p>Exact real arithmetic has a hard wall: <b>equality is undecidable</b>. You cannot, in
   general, prove two constructive reals are equal by any finite computation. So
   <code>exp(100)+42&minus;exp(100)</code> is correctly 42, but the app can&rsquo;t <i>prove</i>
