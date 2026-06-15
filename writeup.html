@@ -12,6 +12,7 @@
 <main class="container page">
   <a class="back" href="index.html">&larr; Constructive Calculator</a>
   <h1>No Rounding</h1>
+  <p class="muted" style="color:var(--muted); font-size:0.92rem; margin:4px 0 0;">June&nbsp;11,&nbsp;2026</p>
 
   <p><b>Constructive Calculator</b> is an iPhone calculator that doesn&rsquo;t round at all.
   It computes with <i>constructive real numbers</i>: every result is exact, and you can scroll
@@ -100,6 +101,13 @@
   <a href="https://testflight.apple.com/join/jfrzZJVT">join here</a>. Caveat: iPhone-only for
   now. Feedback very welcome, especially edge cases: 
   <a href="mailto:support@dimview.org">support@dimview.org</a>.</p>
+
+  <p class="muted" style="color:var(--muted); font-size:0.92rem; margin-top:2.5em;">
+  <b>Update, June&nbsp;15,&nbsp;2026:</b> added the standard normal CDF and its inverse,
+  <code>pnorm</code> and <code>qnorm</code> (&Phi; and &Phi;<sup>&minus;1</sup> on the keypad),
+  computed to arbitrary precision. This one needed new math. The error function isn&rsquo;t in
+  Boehm&rsquo;s library, so it&rsquo;s the first function here that isn&rsquo;t a port: it&rsquo;s
+  implemented directly, as a cancellation-free constructive series. Now in the TestFlight beta.</p>
 </main>
 
 <footer class="container">
